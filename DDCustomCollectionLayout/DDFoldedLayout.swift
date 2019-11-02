@@ -23,6 +23,10 @@ class DDFoldedLayout: UICollectionViewFlowLayout {
         self.init()
         self.config = config
     }
+    private var state = true
+    func updateState() {
+        state = !state
+    }
     var attributes : [UICollectionViewLayoutAttributes] = [UICollectionViewLayoutAttributes]()
     lazy var toppestItemW: CGFloat = config.itemWidth
     lazy var toppestItemH: CGFloat = config.itemHeight
@@ -38,12 +42,22 @@ class DDFoldedLayout: UICollectionViewFlowLayout {
     lazy var  perProgressiveY: CGFloat  = 10
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attribute = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
-        let width = lowestItemW + perProgressiveW * CGFloat(indexPath.item + 1)
-        let height = lowestItemH + perProgressiveH * CGFloat(indexPath.item)
-        let x = lowestItemX - perProgressiveX * CGFloat(indexPath.item + 1)
-        let y = lowestItemY - perProgressiveY * CGFloat(indexPath.item) - perProgressiveH *   CGFloat(indexPath.item)
-        attribute.frame = CGRect(x: x   , y: y, width: width, height: height)
-        attribute.alpha = CGFloat(indexPath.item + 1) / CGFloat(config.itemsCount)
+        if state {
+            let width = lowestItemW + perProgressiveW * CGFloat(indexPath.item + 1)
+            let height = lowestItemH + perProgressiveH * CGFloat(indexPath.item + 1)
+            let x = lowestItemX - perProgressiveX * CGFloat(indexPath.item + 1)
+            let y = lowestItemY - perProgressiveY * CGFloat(indexPath.item) - perProgressiveH *   CGFloat(indexPath.item)
+            attribute.frame = CGRect(x: x   , y: y, width: width, height: height)
+            attribute.alpha = CGFloat(indexPath.item + 1) / CGFloat(config.itemsCount)
+            
+        }else{
+            let width = config.itemWidth
+            let height = config.itemHeight
+            let x: CGFloat = 0
+            let y = height * CGFloat(config.itemsCount - (indexPath.item + 1)) 
+            attribute.frame = CGRect(x: x   , y: y, width: width, height: height)
+            attribute.alpha = 1
+        }
         return attribute
     }
     override func prepare() {
@@ -67,7 +81,11 @@ class DDFoldedLayout: UICollectionViewFlowLayout {
         }
     }
     override var collectionViewContentSize: CGSize{
-        return CGSize(width: config.itemWidth, height: lowestItemY + lowestItemH)
+        if state {
+            return CGSize(width: config.itemWidth, height: lowestItemY + lowestItemH)
+        }else{
+            return CGSize(width: config.itemWidth, height:config.itemHeight * CGFloat(config.itemsCount))
+        }
     }
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return attributes

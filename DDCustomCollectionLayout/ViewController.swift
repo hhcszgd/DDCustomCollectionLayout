@@ -9,9 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    lazy var itemsCount  = 13
+    lazy var button =   UIButton(frame: CGRect(x: 0, y: 22, width: 44, height: 44))
+    lazy var itemsCount  = 6
     lazy var layout: DDFoldedLayout  = {
-        let config: FoldedLayoutConfig = FoldedLayoutConfig(itemHeight: collectionW, itemWidth: collectionW, columnCount: 1, columnMargin: 8, rowMargin: 8, edgeInsets: .zero, sessionHeaderHeight: 0, itemsCount: itemsCount)
+        let config: FoldedLayoutConfig = FoldedLayoutConfig(itemHeight: 222, itemWidth: 222, columnCount: 1, columnMargin: 8, rowMargin: 8, edgeInsets: .zero, sessionHeaderHeight: 0, itemsCount: itemsCount)
         let lay = DDFoldedLayout(config: config)
         lay.scrollDirection = .vertical
         return lay
@@ -24,6 +25,10 @@ class ViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(button)
+        button.addTarget(self , action: #selector(btnClick(sender:)), for: UIControlEvents.touchUpInside)
+        button.backgroundColor = .blue
+        //        button.
         view.backgroundColor = .red
         view.addSubview(collection)
         collection.delegate = self
@@ -31,8 +36,18 @@ class ViewController: UIViewController {
         collection.register(MyItem.self, forCellWithReuseIdentifier: "xxxxx")
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    @objc func btnClick(sender : UIButton) {
+        layout.updateState()
+//        UIView.animate(withDuration: 2) {
+            self.collection.performBatchUpdates({
+                self.collection.reloadData()
+            }) { (complate) in
+                self.collection.reloadData()
+            }
+            
+//        }
+    }
+    
 }
 
 extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate{
@@ -58,7 +73,7 @@ class MyItem: UICollectionViewCell {
         self.contentView.addSubview(label)
         label.textColor = .red
         label.font = UIFont.systemFont(ofSize: 14)
-//        imageview.contentMode = .scaleAspectFit
+        //        imageview.contentMode = .scaleAspectFit
     }
     override func layoutSubviews() {
         super.layoutSubviews()
