@@ -49,7 +49,7 @@ class DDFoldedLayout: UICollectionViewFlowLayout {
             let y = lowestItemY - perProgressiveY * CGFloat(indexPath.item) - perProgressiveH *   CGFloat(indexPath.item)
             attribute.frame = CGRect(x: x   , y: y, width: width, height: height)
             attribute.alpha = CGFloat(indexPath.item + 1) / CGFloat(config.itemsCount)
-            
+            attribute.zIndex =  indexPath.item
         }else{
             let width = config.itemWidth
             let height = config.itemHeight
@@ -57,6 +57,7 @@ class DDFoldedLayout: UICollectionViewFlowLayout {
             let y = height * CGFloat(config.itemsCount - (indexPath.item + 1)) 
             attribute.frame = CGRect(x: x   , y: y, width: width, height: height)
             attribute.alpha = 1
+            attribute.zIndex =  indexPath.item
         }
         return attribute
     }

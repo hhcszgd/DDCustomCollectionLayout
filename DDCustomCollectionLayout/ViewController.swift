@@ -12,19 +12,24 @@ class ViewController: UIViewController {
     lazy var button =   UIButton(frame: CGRect(x: 0, y: 22, width: 44, height: 44))
     lazy var itemsCount  = 6
     lazy var layout: DDFoldedLayout  = {
-        let config: FoldedLayoutConfig = FoldedLayoutConfig(itemHeight: 222, itemWidth: 222, columnCount: 1, columnMargin: 8, rowMargin: 8, edgeInsets: .zero, sessionHeaderHeight: 0, itemsCount: itemsCount)
+        let config: FoldedLayoutConfig = FoldedLayoutConfig(itemHeight: collectionW, itemWidth: collectionW, columnCount: 1, columnMargin: 8, rowMargin: 8, edgeInsets: .zero, sessionHeaderHeight: 0, itemsCount: itemsCount)
         let lay = DDFoldedLayout(config: config)
         lay.scrollDirection = .vertical
         return lay
     }()
-    lazy var collectionW  = view.bounds.width - 20
+    lazy var collectionW  = view.bounds.width - 120
     lazy var collection : UICollectionView = {
-        let frame = CGRect(x: 10, y: 100, width: collectionW, height: 600)
+        let frame = CGRect(x: 60, y: 40, width: collectionW, height: UIScreen.main.bounds.height - 82)
         let c = UICollectionView(frame: frame, collectionViewLayout: layout)
         return c
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            collection.automaticallyAdjustsScrollIndicatorInsets = false
+        } else {
+            collection.contentInsetAdjustmentBehavior = .never
+        }
         view.addSubview(button)
         button.addTarget(self , action: #selector(btnClick(sender:)), for: UIControlEvents.touchUpInside)
         button.backgroundColor = .blue
@@ -38,14 +43,13 @@ class ViewController: UIViewController {
     }
     @objc func btnClick(sender : UIButton) {
         layout.updateState()
-//        UIView.animate(withDuration: 2) {
+        UIView.animate(withDuration: 1.4) {
             self.collection.performBatchUpdates({
                 self.collection.reloadData()
             }) { (complate) in
-                self.collection.reloadData()
             }
             
-//        }
+        }
     }
     
 }
@@ -65,7 +69,7 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate{
     
 }
 class MyItem: UICollectionViewCell {
-    lazy var imageview = UIImageView(image: UIImage(named: "testimg"))
+    lazy var imageview = UIImageView(image: UIImage(named: "baby"))
     lazy var label = UILabel()
     override init(frame: CGRect) {
         super.init(frame: frame)
