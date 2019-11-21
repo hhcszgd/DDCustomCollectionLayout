@@ -19,6 +19,7 @@
 		15A0ADBE222776A9001F16B9 /* DDUpDownAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0ADB7222776A8001F16B9 /* DDUpDownAutoScroll.swift */; };
 		15A0ADBF222776A9001F16B9 /* DDSearchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0ADB8222776A8001F16B9 /* DDSearchLayout.swift */; };
 		15A0ADC0222776A9001F16B9 /* DDPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0ADB9222776A9001F16B9 /* DDPlayerView.swift */; };
+		304BA95C2386976000EF1C61 /* Danger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BA95B2386976000EF1C61 /* Danger.swift */; };
 		B3EEC099236DB51300D69B4C /* DDFoldedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EEC098236DB51300D69B4C /* DDFoldedLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		15A0ADB7222776A8001F16B9 /* DDUpDownAutoScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDUpDownAutoScroll.swift; sourceTree = "<group>"; };
 		15A0ADB8222776A8001F16B9 /* DDSearchLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDSearchLayout.swift; sourceTree = "<group>"; };
 		15A0ADB9222776A9001F16B9 /* DDPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDPlayerView.swift; sourceTree = "<group>"; };
+		304BA95B2386976000EF1C61 /* Danger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Danger.swift; sourceTree = "<group>"; };
 		B3EEC098236DB51300D69B4C /* DDFoldedLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDFoldedLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				15A0ADB4222776A8001F16B9 /* DDSingleLayout.swift */,
 				15A0ADB7222776A8001F16B9 /* DDUpDownAutoScroll.swift */,
 				15A0ADA322277675001F16B9 /* ViewController.swift */,
+				304BA95B2386976000EF1C61 /* Danger.swift */,
 				15A0ADA522277675001F16B9 /* Main.storyboard */,
 				15A0ADA822277675001F16B9 /* Assets.xcassets */,
 				15A0ADAA22277675001F16B9 /* LaunchScreen.storyboard */,
@@ -161,6 +164,7 @@
 			files = (
 				15A0ADA422277675001F16B9 /* ViewController.swift in Sources */,
 				15A0ADBD222776A9001F16B9 /* DDMidBigLayout.swift in Sources */,
+				304BA95C2386976000EF1C61 /* Danger.swift in Sources */,
 				15A0ADBA222776A9001F16B9 /* DDFlowLayout.swift in Sources */,
 				B3EEC099236DB51300D69B4C /* DDFoldedLayout.swift in Sources */,
 				15A0ADC0222776A9001F16B9 /* DDPlayerView.swift in Sources */,
